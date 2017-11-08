@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  geokrety-polls-landing-page:
+    build: .
+    image: geokrety-polls-landing-page:1.0.0
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:polls.geokrety.org,pools.geokrety.org;PathPrefix:/"
+      - "traefik.docker.network=srv_geokrety-front"
+    networks:
+      - front
+
+networks:
+  front:
+    external:
+      name: srv_geokrety-front
