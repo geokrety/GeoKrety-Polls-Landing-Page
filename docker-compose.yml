@@ -2,8 +2,9 @@ version: '2'
 
 services:
   geokrety-polls-landing-page:
-    build: .
-    image: geokrety-polls-landing-page:1.0.0
+    image: nginx
+    volumes:
+      - ./html:/usr/share/nginx/html
     labels:
       - "traefik.enable=true"
       - "traefik.frontend.rule=Host:polls.geokrety.org,pools.geokrety.org;PathPrefix:/"
