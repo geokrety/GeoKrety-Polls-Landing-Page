@@ -3,16 +3,18 @@ version: '2'
 services:
   geokrety-polls-landing-page:
     image: nginx
+    ports:
+     - 8001:80
     volumes:
       - ./html:/usr/share/nginx/html
     labels:
       - "traefik.enable=true"
       - "traefik.frontend.rule=Host:polls.geokrety.org,pools.geokrety.org;PathPrefix:/"
       - "traefik.docker.network=srv_geokrety-front"
-    networks:
-      - front
-
-networks:
-  front:
-    external:
-      name: srv_geokrety-front
+#     networks:
+#       - front
+#
+# networks:
+#   front:
+#     external:
+#       name: srv_geokrety-front
